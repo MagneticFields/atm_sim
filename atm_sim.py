@@ -24,8 +24,8 @@ def main_menu():
         return resp
 
 
-def login_menu():
-    pass
+def login_menu(acc_num):
+    print("Welcome" + acc_num)
 
 
 def open_account():
@@ -65,10 +65,16 @@ def save_accounts():
 def log_in():
     acc_num = input("Please enter your account number\n")
     pwd = input("Please enter your password\n")
-
-    while
-
-    pass
+    i = 3
+    while accounts[acc_num] != pwd:
+        if i == 0:
+            print("Sorry! Too many wrong attempts")
+            exit(0)
+        else:
+            pwd = input("Wrong password.! Please try again: ")
+            i -= 1
+    return acc_num
+    login_menu(acc_num)
 
 
 def end_program():
