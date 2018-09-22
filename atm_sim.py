@@ -1,6 +1,11 @@
 """ Simple atm simulator"""
 
 
+
+accounts = {} # This dict is for storing account ids and passwords. Keys = id, values = pass
+
+
+
 def main_menu():
     """Welcome screen function. It gives some options to the user and returns a value
     input --> number from menu
@@ -19,77 +24,35 @@ def main_menu():
         return resp
 
 
-class Account(object):
-    id_ = 201801
-    passwd = {}
+def login_menu():
 
-    def __init__(self, password_):
-        id_ = 201801
-        self.id = Account.id_
-        self.password = password_
-        self.balance = 0
-        Account.passwd[id_] = password_
-        Account.id_ += 1
-
-    def __str__(self):
-        return 'Account ' + str(self.id) + ' has ' + str(self.balance)
-
-    def set_balance(self, balance):
-        self.balance = balance
-
-    def add_funds(self, amount):
-        self.balance = self.balance + amount
-        print(str(amount) + 'added to your account')
-
-    def withdraw_funds(self, amount):
-        if amount > self.balance:
-            print('You don\'t have enough funds')
-        else:
-            self.balance = self.balance - amount
-
-    def get_id(self):
-        return self.id
-
-    def transfer_funds(self, other, amount):
-        if amount > self.balance:
-            print('You don\'t have enough funds!')
-        else:
-            self.balance = self.balance - amount
-            other.balance = other.balance + amount
-
-    def get_pass(self):
-        id_ = self.id
-        if id_ in Account.passwd:
-            return Account.passwd[id_]
-        else:
-            return 'No id'
-
-
-# class Password(object):
-#
-#    def __init__(self, id_, password):
-#        self.id = id_
-#        self.password = password
-#
-#    def get_password(self, id_):
-#        return self.password
-
-accounts = []
+    pass
 
 
 def open_account():
-    """Creates a Account object and adds to the accounts list"""
 
-    name = input('Please enter a name for your account: ')
-    print('Please enter a password for your account\n')
-    password_ = int(input())
-    name = Account(password_)  # Need a variable to create object instances
-    accounts.append(name)
-    save_accounts()
-    print('Your account successfully created')
-    print('Your account id is: ' + str(Account.get_id()))
+    """Creates a Account and adds to the accounts list"""
 
-    # TODO
+    def account_id_generator():
+
+        """Creates an account id number form current year and month"""
+        from datetime import datetime
+        now = datetime.now()
+        year = now.year
+        month = now.month
+        id_seed = 1
+        generated_acc_id = str(year) + str(month) + str(id_seed)
+        id_seed += 1
+        return generated_acc_id
+
+    acc_id = account_id_generator()
+    print("Your account id is: {}".format(acc_id))
+    passwd = input("Please enter a password for your account: ")
+    accounts[acc_id] = passwd
+    print("Your account has successfully created")
+    main_menu()
+
+
 
 
 def save_accounts():
