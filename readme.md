@@ -1,2 +1,2 @@
-This is a simle atm simulator which simulates an atm machine.
+This is a simle atm simulator which simulates (Wait for it) atm machine.
 
