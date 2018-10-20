@@ -141,6 +141,9 @@ def login_menu(acc_id):
 
     elif choice == "6":
         end_program()
+    else:
+        print("Sorry, please enter a valid option")
+        login_menu(acc_id)
 
 
 def open_account():
